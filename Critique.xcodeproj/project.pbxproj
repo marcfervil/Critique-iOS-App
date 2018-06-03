@@ -14,6 +14,8 @@
 		492EB3AD20C35324000A87CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 492EB3AB20C35324000A87CB /* LaunchScreen.storyboard */; };
 		492EB3B820C35324000A87CB /* CritiqueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492EB3B720C35324000A87CB /* CritiqueTests.swift */; };
 		492EB3C320C35324000A87CB /* CritiqueUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492EB3C220C35324000A87CB /* CritiqueUITests.swift */; };
+		492EB3D120C36866000A87CB /* ApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492EB3D020C36866000A87CB /* ApiRequest.swift */; };
+		492EB3D320C370E1000A87CB /* BaseApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492EB3D220C370E1000A87CB /* BaseApiRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		492EB3BE20C35324000A87CB /* CritiqueUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CritiqueUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		492EB3C220C35324000A87CB /* CritiqueUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CritiqueUITests.swift; sourceTree = "<group>"; };
 		492EB3C420C35324000A87CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		492EB3D020C36866000A87CB /* ApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRequest.swift; sourceTree = "<group>"; };
+		492EB3D220C370E1000A87CB /* BaseApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseApiRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				492EB3A920C35324000A87CB /* Assets.xcassets */,
 				492EB3AB20C35324000A87CB /* LaunchScreen.storyboard */,
 				492EB3AE20C35324000A87CB /* Info.plist */,
+				492EB3D020C36866000A87CB /* ApiRequest.swift */,
+				492EB3D220C370E1000A87CB /* BaseApiRequest.swift */,
 			);
 			path = Critique;
 			sourceTree = "<group>";
@@ -258,6 +264,8 @@
 			files = (
 				492EB3A520C35322000A87CB /* ViewController.swift in Sources */,
 				492EB3A320C35322000A87CB /* AppDelegate.swift in Sources */,
+				492EB3D320C370E1000A87CB /* BaseApiRequest.swift in Sources */,
+				492EB3D120C36866000A87CB /* ApiRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
