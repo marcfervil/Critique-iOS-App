@@ -30,7 +30,7 @@ class ApiRequest {
                     if let errorMessage = response["response"] as? String {
                         DispatchQueue.main.async(execute: {
                             if errorCallback != nil {
-                                print("ERROR: "+errorMessage)
+                                print("ERROR FROM SERVER: "+errorMessage)
                                 errorCallback!(errorMessage)
                             }
                         })
