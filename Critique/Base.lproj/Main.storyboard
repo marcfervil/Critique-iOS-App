@@ -115,30 +115,6 @@
             <point key="canvasLocation" x="1426.4000000000001" y="173.16341829085459"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="U5I-sf-uDb">
-            <objects>
-                <viewController id="i8C-TY-c6C" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6bH-Qh-dzi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Queue Item" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jj5-4z-ct8">
-                                <rect key="frame" x="102" y="105" width="89" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="e0N-I7-CeP"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iDU-1C-t3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1676" y="878"/>
-        </scene>
-        <!--View Controller-->
         <scene sceneID="tk4-es-Amn">
             <objects>
                 <viewController id="Sqd-d3-4W2" sceneMemberID="viewController">

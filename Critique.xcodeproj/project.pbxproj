@@ -18,6 +18,8 @@
 		492EB3D320C370E1000A87CB /* BaseApiRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492EB3D220C370E1000A87CB /* BaseApiRequest.swift */; };
 		493C1B3220C446F700C472C5 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493C1B3120C446F700C472C5 /* Data.swift */; };
 		493C1B3620C4558200C472C5 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493C1B3520C4558200C472C5 /* HomeScreen.swift */; };
+		493F087020C9FA24003C4EE8 /* SelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493F086F20C9FA24003C4EE8 /* SelectionView.xib */; };
+		493F087220C9FAF8003C4EE8 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F087120C9FAF8003C4EE8 /* SelectionView.swift */; };
 		49CB437720C4BAB5004DF321 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CB437620C4BAB5004DF321 /* Queue.swift */; };
 		49CB437920C4CCE1004DF321 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CB437820C4CCE1004DF321 /* Util.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +59,8 @@
 		492EB3D220C370E1000A87CB /* BaseApiRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseApiRequest.swift; sourceTree = "<group>"; };
 		493C1B3120C446F700C472C5 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		493C1B3520C4558200C472C5 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		493F086F20C9FA24003C4EE8 /* SelectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectionView.xib; sourceTree = "<group>"; };
+		493F087120C9FAF8003C4EE8 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		49CB437620C4BAB5004DF321 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		49CB437820C4CCE1004DF321 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -112,6 +116,7 @@
 				492EB3A220C35322000A87CB /* AppDelegate.swift */,
 				492EB3A420C35322000A87CB /* ViewController.swift */,
 				492EB3A620C35322000A87CB /* Main.storyboard */,
+				493F086F20C9FA24003C4EE8 /* SelectionView.xib */,
 				493C1B3520C4558200C472C5 /* HomeScreen.swift */,
 				492EB3A920C35324000A87CB /* Assets.xcassets */,
 				492EB3AB20C35324000A87CB /* LaunchScreen.storyboard */,
@@ -121,6 +126,7 @@
 				493C1B3120C446F700C472C5 /* Data.swift */,
 				49CB437620C4BAB5004DF321 /* Queue.swift */,
 				49CB437820C4CCE1004DF321 /* Util.swift */,
+				493F087120C9FAF8003C4EE8 /* SelectionView.swift */,
 			);
 			path = Critique;
 			sourceTree = "<group>";
@@ -250,6 +256,7 @@
 				492EB3AD20C35324000A87CB /* LaunchScreen.storyboard in Resources */,
 				492EB3AA20C35324000A87CB /* Assets.xcassets in Resources */,
 				492EB3A820C35322000A87CB /* Main.storyboard in Resources */,
+				493F087020C9FA24003C4EE8 /* SelectionView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +286,7 @@
 				493C1B3220C446F700C472C5 /* Data.swift in Sources */,
 				49CB437920C4CCE1004DF321 /* Util.swift in Sources */,
 				493C1B3620C4558200C472C5 /* HomeScreen.swift in Sources */,
+				493F087220C9FAF8003C4EE8 /* SelectionView.swift in Sources */,
 				492EB3A320C35322000A87CB /* AppDelegate.swift in Sources */,
 				492EB3D320C370E1000A87CB /* BaseApiRequest.swift in Sources */,
 				492EB3D120C36866000A87CB /* ApiRequest.swift in Sources */,
@@ -455,7 +463,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 782Z42H2EG;
 				INFOPLIST_FILE = Critique/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,7 +482,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 782Z42H2EG;
 				INFOPLIST_FILE = Critique/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
