@@ -32,14 +32,16 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         
         motionCounter = 0
         
-        selectionView = SelectionView(frame:self.refreshControl!.bounds)
-        selectionView.clipsToBounds = true;
-        
         refreshControl = {
             let refreshControl = UIRefreshControl()
             refreshControl.addTarget(self, action: #selector(pulled),for: UIControlEvents.valueChanged)
             return refreshControl
         }()
+        
+        selectionView = SelectionView(frame:self.refreshControl!.bounds)
+        selectionView.clipsToBounds = true;
+        
+        
         refreshControl.addSubview(selectionView)
         refreshControl.tintColor = UIColor.clear
         
