@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Critique.xcodeproj">
+      location = "group:/Users/Marc/Documents/Programming/Critique IOS/Critique/Critique/Main.storyboard">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

@@ -20,16 +20,13 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     var hasScrolled = false
     
     var motionCounter = CGFloat(0)
-    
-    @IBOutlet weak var queueHeading: UINavigationBar!
-    
  
+    @IBOutlet weak var scroller: UIScrollView!
+    
+    @IBOutlet weak var NavBar: UINavigationBar!
+    
     override func viewDidLoad() {
-        
-        queueHeading.backgroundColor = Util.getColor("primary")
-        queueHeading.barTintColor = Util.getColor("primary")
-        queueHeading.alpha = 100.0
-        
+     
         motionCounter = 0
         
         refreshControl = {
@@ -38,22 +35,29 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
             return refreshControl
         }()
         
+        //NavBar!.backgroundColor =
+        
+        NavBar!.barTintColor = Util.getColor("primary")
+
+        
+        
         selectionView = SelectionView(frame:self.refreshControl!.bounds)
         selectionView.clipsToBounds = true;
-        
         
         refreshControl.addSubview(selectionView)
         refreshControl.tintColor = UIColor.clear
         
-        PostHolder.delegate = self
-        PostHolder.refreshControl = refreshControl
+        scroller.delegate = self
+        scroller.refreshControl = refreshControl
         
          let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragging))
          recognizer.cancelsTouchesInView = false
          recognizer.delegate=self
        
-         PostHolder.addGestureRecognizer(recognizer)
+         scroller.addGestureRecognizer(recognizer)
 
+        let a = PostView(frame:self.scroller.bounds)
+        scroller.addSubview(a)
         
     }
     
@@ -67,9 +71,26 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         }
     }
     
+    
+    func switched(s: UISwitch){
+        let origin: CGFloat = s.isOn ? view.frame.height : 50
+        UIView.animate(withDuration: 0.35) {
+            self.scroller.frame.origin.y = origin
+        }
+    }
+    
     func selected(_ selection : Int){
         
+       // let b = SelectionView(frame:self.refreshControl!.bounds)
+       print(selection)
+        
+        
+        //switchView.frame = CGRect(x: 0, y: 20, width: 40, height: 20)
+        //scroller.subviews[0].addTarget(self, action: #selector(switched), for: .valueChanged)
     }
+    
+    
+    
     
     @objc func handleDragging(recognizer: UIPanGestureRecognizer) {
         if (recognizer.state == .ended) {
