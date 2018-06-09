@@ -56,7 +56,7 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
        
          scroller.addGestureRecognizer(recognizer)
 
-        let a = PostView(frame:self.scroller.bounds)
+        let a = PostView(frame: self.scroller.bounds)
         scroller.addSubview(a)
         
     }
