@@ -64,6 +64,7 @@ class HomeScreen : UIPageViewController, UIPageViewControllerDataSource,UIPageVi
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         if let identifier = viewControllers?.first?.restorationIdentifier {
             if let index = pages.index(of: identifier) {
+                    
                 return index
             }
         }

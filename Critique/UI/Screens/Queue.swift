@@ -16,9 +16,9 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     var motionCounter = CGFloat(0)
  
     var currentPost : PostView!
+   
+    var offset : CGFloat = 0
     
-    var recentContentOffset = CGPoint(x:0, y:0)
-
     @IBOutlet weak var selectionViewHolder: UIView!
     
     
@@ -44,7 +44,7 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         let postView = PostView(frame: scrollView.bounds)
         postView.bounds.origin.y = -scrollView.bounds.height
         scrollView.addSubview(postView)
-        UIView.animate(withDuration: 0.3, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             
             //print(self.scrollView.contentOffset.y)
             postView.bounds.origin.y = 0
@@ -89,6 +89,7 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragging))
         recognizer.cancelsTouchesInView = false
+   
         recognizer.delegate=self
         scrollView.addGestureRecognizer(recognizer)
         
@@ -103,64 +104,72 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return false
+      
+        return !(offset > 5)
     }
 
     
     func scrollViewDidScroll (_ scrollView : UIScrollView) {
-  
-        /*
-        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height) {
-            selectionView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: scrollView.contentOffset.y * -1 )
-        }
-        */
+
  
     }
     
    
     func selected(_ selection : Int){
-        //renderPost(post: nil)
+        if(selection != 1){
+            self.selectionView.selected = 1
+            self.selectionView.updateColors()
+            renderPost(post: nil)
+        }
     }
     
     
+
     @objc func handleDragging(recognizer: UIPanGestureRecognizer) {
+
         if (recognizer.state == .ended) {
 
             
             self.selectionView.collapse()
             
+            self.offset = 0
             
             UIView.animate(withDuration: 0.2, animations: {
                 self.scrollView.contentOffset.y = 0
-            })
+            } , completion : { _ in
+                self.selected(self.selectionView.selected)
+            } )
      
+            
             
         }else if (recognizer.state == .changed) {
             let point = recognizer.velocity(in: recognizer.view?.superview)
             
-            var c = recognizer.translation(in: recognizer.view?.superview)
+            let translation = recognizer.translation(in: recognizer.view?.superview)
+            offset = translation.y
             
-            
-            if c.y < 1 {
-                c.y = 0
+            if offset < 1 {
+                offset = 0
+            } else if offset > 50 {
+                offset = 50
             }
             
-            selectionView.frame = CGRect(x: 0, y: 0, width: selectionViewHolder.frame.width, height: c.y )
- 
+            selectionView.frame = CGRect(x: 0, y: 0, width: selectionViewHolder.frame.width, height: offset )
             selectionViewHolder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-            scrollView.contentOffset.y = -c.y
+            scrollView.contentOffset.y = -offset
       
-            
-            motionCounter += point.x
-            let threshold = CGFloat(2000)
-            if motionCounter > threshold {
-                selectionView.selectNext()
-                motionCounter = 0
-            }else if motionCounter < -threshold {
-                selectionView.selectLast()
-                motionCounter = 0
+            if offset > 30 {
+                motionCounter += point.x
+                let threshold = CGFloat(2000)
+                if motionCounter > threshold {
+                    selectionView.selectNext()
+                    motionCounter = 0
+                }else if motionCounter < -threshold {
+                    selectionView.selectLast()
+                    motionCounter = 0
+                }
             }
+            
         }
     }
 
