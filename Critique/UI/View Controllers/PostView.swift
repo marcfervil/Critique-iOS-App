@@ -31,12 +31,22 @@ class PostView: UIView{
     init(frame: CGRect, post : Post){
         super.init(frame: frame)
         self.post = post
+        commonInit()
     }
 
+   
+
+
+    
     private func commonInit(){
         Bundle.main.loadNibNamed("PostView", owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.frame
+        self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        
+        
+        
     }
     
 }

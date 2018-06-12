@@ -27,9 +27,30 @@ class SelectionView: UIView{
     private func commonInit(){
         Bundle.main.loadNibNamed("SelectionView", owner: self, options: nil)
         addSubview(contentView)
+
         contentView.frame = self.frame
-        contentView.backgroundColor = Util.getColor("primaryDark")
+        
+        contentView.backgroundColor = UIColor.blue
+        self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
         updateColors()
+    }
+    
+
+    func collapse(){
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.frame = CGRect(x: 0 , y: 0, width: self.contentView.frame.width, height: 0)
+            for i in self.contentView.subviews {
+                let button: CGRect = i.frame
+                i.frame = CGRect(x: button.origin.x, y:button.origin.y, width: button.size.width, height: 0)
+            }
+            
+        } , completion : { _ in
+            
+            
+        } )
+        
     }
     
     func updateColors(){

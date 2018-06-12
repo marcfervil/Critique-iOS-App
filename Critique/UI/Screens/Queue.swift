@@ -11,92 +11,147 @@ import UIKit
 
 class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate {
     
-    var refreshControl: UIRefreshControl!
+    @IBOutlet var mainView: UIView!
 
-    @IBOutlet weak var PostHolder: UIScrollView!
-    
-    var selectionView : SelectionView!
-    
-    var hasScrolled = false
-    
     var motionCounter = CGFloat(0)
  
-    @IBOutlet weak var scroller: UIScrollView!
+    var currentPost : PostView!
     
-    @IBOutlet weak var NavBar: UINavigationBar!
+    var recentContentOffset = CGPoint(x:0, y:0)
+
+    @IBOutlet weak var selectionViewHolder: UIView!
+    
+    
+    var selectionView: SelectionView!
+    
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var scrollView: UIScrollView!
+    
     
     override func viewDidLoad() {
-     
-        motionCounter = 0
+        initNavBar()
+        initSelectionView()
+        initScrollView()
+        renderPost(post: nil)
         
-        refreshControl = {
-            let refreshControl = UIRefreshControl()
-            refreshControl.addTarget(self, action: #selector(pulled),for: UIControlEvents.valueChanged)
-            return refreshControl
-        }()
         
-        //NavBar!.backgroundColor =
-        
-        NavBar!.barTintColor = Util.getColor("primary")
+        //scrollView.addSubview(selectionView)
+    }
+    
 
-        
-        
-        selectionView = SelectionView(frame:self.refreshControl!.bounds)
-        selectionView.clipsToBounds = true;
-        
-        refreshControl.addSubview(selectionView)
-        refreshControl.tintColor = UIColor.clear
-        
-        scroller.delegate = self
-        scroller.refreshControl = refreshControl
-        
-         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragging))
-         recognizer.cancelsTouchesInView = false
-         recognizer.delegate=self
+    
+    func renderPost(post: Post!){
+        let postView = PostView(frame: scrollView.bounds)
+        postView.bounds.origin.y = -scrollView.bounds.height
+        scrollView.addSubview(postView)
+        UIView.animate(withDuration: 0.3, animations: {
+            
+            //print(self.scrollView.contentOffset.y)
+            postView.bounds.origin.y = 0
+            
+            
+        } , completion : { _ in
+            if self.currentPost != nil {
+                self.currentPost.removeFromSuperview()
+            }
+            self.currentPost = postView
+            
+        } )
+    }
+    
+    func initNavBar(){
+         navBar!.barTintColor = Util.getColor("primary")
+    }
+    
+    func initSelectionView(){
+
        
-         scroller.addGestureRecognizer(recognizer)
+        
+        selectionView = SelectionView(frame: CGRect(x: 0 , y: 0, width: scrollView.frame.width, height: 0))
+ 
+        selectionView.clipsToBounds = false
+        
+        selectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+       
+        self.selectionViewHolder.layer.zPosition = 1;
+        
+        selectionViewHolder.addSubview(selectionView)
+    }
+    
 
-        let a = PostView(frame: self.scroller.bounds)
-        scroller.addSubview(a)
+    
+    func initScrollView(){
+        scrollView.delegate = self
+
+        scrollView.bounces = false
+        
+
+        
+        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragging))
+        recognizer.cancelsTouchesInView = false
+        recognizer.delegate=self
+        scrollView.addGestureRecognizer(recognizer)
+        
+        
+        
+    }
+    
+    @objc func handleSwipe(_ sender:UISwipeGestureRecognizer) {
+        
+
         
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+        return false
     }
+
     
     func scrollViewDidScroll (_ scrollView : UIScrollView) {
+  
+        /*
         if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= scrollView.contentSize.height) {
             selectionView.frame = CGRect(x: 0 , y: 0, width: self.view.frame.width, height: scrollView.contentOffset.y * -1 )
         }
+        */
+ 
     }
     
-    
-    func switched(s: UISwitch){
-        let origin: CGFloat = s.isOn ? view.frame.height : 50
-        UIView.animate(withDuration: 0.35) {
-            self.scroller.frame.origin.y = origin
-        }
-    }
-    
+   
     func selected(_ selection : Int){
-        
-       // let b = SelectionView(frame:self.refreshControl!.bounds)
-       print(selection)
-        
-        
-        //switchView.frame = CGRect(x: 0, y: 20, width: 40, height: 20)
-        //scroller.subviews[0].addTarget(self, action: #selector(switched), for: .valueChanged)
+        //renderPost(post: nil)
     }
-    
-    
     
     
     @objc func handleDragging(recognizer: UIPanGestureRecognizer) {
         if (recognizer.state == .ended) {
-            selected(selectionView.selected)
+
+            
+            self.selectionView.collapse()
+            
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.scrollView.contentOffset.y = 0
+            })
+     
+            
         }else if (recognizer.state == .changed) {
             let point = recognizer.velocity(in: recognizer.view?.superview)
+            
+            var c = recognizer.translation(in: recognizer.view?.superview)
+            
+            
+            if c.y < 1 {
+                c.y = 0
+            }
+            
+            selectionView.frame = CGRect(x: 0, y: 0, width: selectionViewHolder.frame.width, height: c.y )
+ 
+            selectionViewHolder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            
+            scrollView.contentOffset.y = -c.y
+      
+            
             motionCounter += point.x
             let threshold = CGFloat(2000)
             if motionCounter > threshold {
@@ -108,12 +163,7 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
             }
         }
     }
-    
-    @objc func pulled(){
-        refreshControl.endRefreshing()
-    }
-    
-    
+
     
     
     override func didReceiveMemoryWarning() {

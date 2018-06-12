@@ -25,6 +25,7 @@
 		49CB437720C4BAB5004DF321 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CB437620C4BAB5004DF321 /* Queue.swift */; };
 		49CB437920C4CCE1004DF321 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CB437820C4CCE1004DF321 /* Util.swift */; };
 		49EAA5CE20CC353500668443 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAA5CD20CC353500668443 /* Post.swift */; };
+		49EAA5D920CC3CC900668443 /* QueueHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAA5D820CC3CC900668443 /* QueueHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		49CB437620C4BAB5004DF321 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		49CB437820C4CCE1004DF321 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		49EAA5CD20CC353500668443 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		49EAA5D820CC3CC900668443 /* QueueHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 			children = (
 				492EB3D220C370E1000A87CB /* BaseApiRequest.swift */,
 				492EB3D020C36866000A87CB /* ApiRequest.swift */,
+				49EAA5D820CC3CC900668443 /* QueueHandler.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				49EAA5CE20CC353500668443 /* Post.swift in Sources */,
 				49CB437720C4BAB5004DF321 /* Queue.swift in Sources */,
 				493C1B3220C446F700C472C5 /* UserData.swift in Sources */,
+				49EAA5D920CC3CC900668443 /* QueueHandler.swift in Sources */,
 				49CB437920C4CCE1004DF321 /* Util.swift in Sources */,
 				493C1B3620C4558200C472C5 /* HomeScreen.swift in Sources */,
 				493F087220C9FAF8003C4EE8 /* SelectionView.swift in Sources */,
