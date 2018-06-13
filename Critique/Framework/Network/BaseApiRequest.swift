@@ -15,8 +15,14 @@ class LoginRequest : ApiRequest{
         super.init("login", [
             "username" : username,
             "password" : password
-        ])
+        ], key: false)
     }
     
-    
+}
+
+
+class GetQueueRequest : ApiRequest{
+    init(){
+        super.init("getQueue")
+    }
 }

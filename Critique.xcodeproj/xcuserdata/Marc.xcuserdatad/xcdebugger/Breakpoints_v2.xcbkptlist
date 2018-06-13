@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Critique/UI/View Controllers/SelectionView.swift"
-            timestampString = "550532632.045804"
+            timestampString = "550533116.88323"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Critique/UI/Screens/Queue.swift"
-            timestampString = "550532632.045877"
+            timestampString = "550596983.4292589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "handleDragging(recognizer:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Critique/UI/Screens/Queue.swift"
-            timestampString = "550532632.046254"
+            timestampString = "550596983.429601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "handleDragging(recognizer:)"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "didReceiveMemoryWarning()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

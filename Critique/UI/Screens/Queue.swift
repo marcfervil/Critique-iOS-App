@@ -24,6 +24,8 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     
     var selectionView: SelectionView!
     
+    var queue : QueueHandler = QueueHandler()
+    
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var scrollView: UIScrollView!
     
@@ -32,24 +34,16 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         initNavBar()
         initSelectionView()
         initScrollView()
-        renderPost(post: nil)
-        
-        
-        //scrollView.addSubview(selectionView)
+   
     }
     
 
-    
     func renderPost(post: Post!){
-        let postView = PostView(frame: scrollView.bounds)
+        let postView = PostView(frame: scrollView.bounds, post: queue.getNextPost())
         postView.bounds.origin.y = -scrollView.bounds.height
         scrollView.addSubview(postView)
         UIView.animate(withDuration: 0.2, animations: {
-            
-            //print(self.scrollView.contentOffset.y)
             postView.bounds.origin.y = 0
-            
-            
         } , completion : { _ in
             if self.currentPost != nil {
                 self.currentPost.removeFromSuperview()
@@ -64,17 +58,10 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     }
     
     func initSelectionView(){
-
-       
-        
         selectionView = SelectionView(frame: CGRect(x: 0 , y: 0, width: scrollView.frame.width, height: 0))
- 
         selectionView.clipsToBounds = false
-        
         selectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-       
         self.selectionViewHolder.layer.zPosition = 1;
-        
         selectionViewHolder.addSubview(selectionView)
     }
     
@@ -82,38 +69,21 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     
     func initScrollView(){
         scrollView.delegate = self
-
         scrollView.bounces = false
-        
-
-        
         let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragging))
         recognizer.cancelsTouchesInView = false
-   
         recognizer.delegate=self
         scrollView.addGestureRecognizer(recognizer)
-        
-        
-        
+  
     }
     
-    @objc func handleSwipe(_ sender:UISwipeGestureRecognizer) {
-        
 
-        
-    }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-      
         return !(offset > 5)
     }
 
-    
-    func scrollViewDidScroll (_ scrollView : UIScrollView) {
 
- 
-    }
-    
    
     func selected(_ selection : Int){
         if(selection != 1){
@@ -126,25 +96,16 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     
 
     @objc func handleDragging(recognizer: UIPanGestureRecognizer) {
-
         if (recognizer.state == .ended) {
-
-            
             self.selectionView.collapse()
-            
             self.offset = 0
-            
             UIView.animate(withDuration: 0.2, animations: {
                 self.scrollView.contentOffset.y = 0
             } , completion : { _ in
                 self.selected(self.selectionView.selected)
             } )
-     
-            
-            
         }else if (recognizer.state == .changed) {
             let point = recognizer.velocity(in: recognizer.view?.superview)
-            
             let translation = recognizer.translation(in: recognizer.view?.superview)
             offset = translation.y
             
@@ -153,7 +114,6 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
             } else if offset > 50 {
                 offset = 50
             }
-            
             selectionView.frame = CGRect(x: 0, y: 0, width: selectionViewHolder.frame.width, height: offset )
             selectionViewHolder.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             scrollView.contentOffset.y = -offset
@@ -169,10 +129,10 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
                     motionCounter = 0
                 }
             }
-            
+                
         }
+    
     }
-
     
     
     override func didReceiveMemoryWarning() {
@@ -180,5 +140,4 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     }
 
 }
-
 

@@ -16,9 +16,14 @@ class ApiRequest {
     
    
     
-    init(_ path : String, _ params : [String: Any]){
+    init(_ path : String, _ params : [String: Any] = [:], key : Bool = true){
         self.params = params
         self.path = path
+        
+        if (key){
+            self.params["apiKey"] = UserData.getAttribute("apiKey")
+        }
+        
     }
     
     func execute(_ callback: @escaping (_ data : Any) -> Void, _ errorCallback: ((_ data : String) -> Void )? = nil ) {

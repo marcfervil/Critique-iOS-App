@@ -19,6 +19,8 @@ class Post{
     var title: String
     
     init(username: String, title: String, content: String, type: String, votes: Any) {
+        
+        
         self.username = username
         self.content = content
         self.type = type
@@ -33,6 +35,9 @@ class Post{
     }
     
     convenience init(data : [String : Any]){
+        
+        //print(data)
+        
         self.init(
             username: data["username"] as! String,
             title: data["title"] as! String,

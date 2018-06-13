@@ -12,8 +12,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PostView" customModule="Critique" customModuleProvider="target">
             <connections>
+                <outlet property="contentLabel" destination="qrY-W1-EhE" id="0tn-9b-qnz"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="Usv-Zr-xst"/>
                 <outlet property="profilePicture" destination="pUm-EU-HaJ" id="TuF-cf-Ehz"/>
+                <outlet property="titleLabel" destination="SFM-qs-BvP" id="lqx-gM-52Y"/>
+                <outlet property="usernameLabel" destination="ynF-5o-E5o" id="WDa-Wp-F1x"/>
+                <outlet property="votesLabel" destination="DvY-z2-CwG" id="FOf-WW-5oE"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

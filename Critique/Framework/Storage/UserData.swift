@@ -13,7 +13,8 @@ class UserData {
     
     static var userData : [String:Any] = [:]
     static let defaults = UserDefaults.standard
-   
+    static let debug = true 
+    
     public static func loadData() -> Bool{
         if let data = defaults.dictionary(forKey: "userData"){
             userData = data
@@ -32,7 +33,7 @@ class UserData {
         userData[key] = value
      }
     
-    static func getAttribute(attr : String) -> Any!{
+    static func getAttribute(_ attr : String) -> Any!{
         return userData[attr]!
     }
     
