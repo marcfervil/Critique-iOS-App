@@ -30,7 +30,9 @@ class SelectionView: UIView{
 
         contentView.frame = self.frame
         
-        contentView.backgroundColor = UIColor.blue
+        //contentView.backgroundColor = UIColor.blue
+        
+        
         self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         updateColors()

@@ -12,6 +12,9 @@ import UIKit
 class HomeScreen : UIPageViewController, UIPageViewControllerDataSource,UIPageViewControllerDelegate {
     
     let pages = ["PagesContentController1", "PagesContentController2"]
+    let pageChache : [String: ViewController] = [ : ]
+    static var scrolling = false
+    var queuePage : Queue?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,15 +22,38 @@ class HomeScreen : UIPageViewController, UIPageViewControllerDataSource,UIPageVi
         self.dataSource = self
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PagesContentController1")
-        setViewControllers([vc!], direction: .forward, animated: true,completion: nil)
-    
+        
+        if let a = vc as? Queue {
+            queuePage = a
+        }
+        
+       
+        
+        setViewControllers([vc!], direction: .forward, animated: true, completion: { _ in
+            HomeScreen.scrolling = false
+           
+            
+        })
     }
     
+    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]){
+        HomeScreen.scrolling = true
+         self.queuePage?.collapseSelectionView()
+        //print("fejwifjiewfe")
+    }
+    
+    
+    @objc func finishedScroll() -> Bool{
+        
+        
+        return true
+    }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         if let identifier = viewController.restorationIdentifier {
             if let index = pages.index(of: identifier) {
                 if index > 0 {
+                    
                     return self.storyboard?.instantiateViewController(withIdentifier: pages[index-1])
                 }
             }
@@ -39,6 +65,7 @@ class HomeScreen : UIPageViewController, UIPageViewControllerDataSource,UIPageVi
         if let identifier = viewController.restorationIdentifier {
             if let index = pages.index(of: identifier) {
                 if index < pages.count - 1 {
+                    print(identifier)
                     return self.storyboard?.instantiateViewController(withIdentifier: pages[index+1])
                 }
             }
@@ -64,7 +91,7 @@ class HomeScreen : UIPageViewController, UIPageViewControllerDataSource,UIPageVi
     func presentationIndex(for pageViewController: UIPageViewController) -> Int {
         if let identifier = viewControllers?.first?.restorationIdentifier {
             if let index = pages.index(of: identifier) {
-                    
+
                 return index
             }
         }

@@ -28,18 +28,20 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var scrollView: UIScrollView!
+    let impact = UIImpactFeedbackGenerator()
     
+    
+    var recognizer : UIGestureRecognizer?
     
     override func viewDidLoad() {
         initNavBar()
         initSelectionView()
         initScrollView()
-   
     }
     
 
     func renderPost(post: Post!){
-        let postView = PostView(frame: scrollView.bounds, post: queue.getNextPost())
+        let postView = PostView(frame: scrollView.bounds, post: post)
         postView.bounds.origin.y = -scrollView.bounds.height
         scrollView.addSubview(postView)
         UIView.animate(withDuration: 0.2, animations: {
@@ -66,19 +68,17 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     }
     
 
-    
     func initScrollView(){
         scrollView.delegate = self
         scrollView.bounces = false
-        let recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragging))
-        recognizer.cancelsTouchesInView = false
-        recognizer.delegate=self
-        scrollView.addGestureRecognizer(recognizer)
+        recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragging))
+        recognizer!.cancelsTouchesInView = false
+        recognizer!.delegate=self
+        scrollView!.addGestureRecognizer(recognizer!)
   
     }
     
 
-    
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return !(offset > 5)
     }
@@ -89,22 +89,28 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         if(selection != 1){
             self.selectionView.selected = 1
             self.selectionView.updateColors()
-            renderPost(post: nil)
+            
+            //renderPost(post: queue.getNextPost())
+            renderPost(post: Post(username: "marc", title: "title", content: "content", type: "text", votes: 0))
         }
     }
     
-    
+    func collapseSelectionView(){
+        recognizer?.isEnabled = false
+        self.selectionView.collapse()
+        self.offset = 0
+        UIView.animate(withDuration: 0.2, animations: {
+            self.scrollView.contentOffset.y = 0
+            self.recognizer?.isEnabled = true
+        } , completion : { _ in
+            self.selected(self.selectionView.selected)
+        } )
+    }
 
     @objc func handleDragging(recognizer: UIPanGestureRecognizer) {
         if (recognizer.state == .ended) {
-            self.selectionView.collapse()
-            self.offset = 0
-            UIView.animate(withDuration: 0.2, animations: {
-                self.scrollView.contentOffset.y = 0
-            } , completion : { _ in
-                self.selected(self.selectionView.selected)
-            } )
-        }else if (recognizer.state == .changed) {
+            collapseSelectionView()
+        }else if (recognizer.state == .changed && HomeScreen.scrolling) {
             let point = recognizer.velocity(in: recognizer.view?.superview)
             let translation = recognizer.translation(in: recognizer.view?.superview)
             offset = translation.y
@@ -123,9 +129,11 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
                 let threshold = CGFloat(2000)
                 if motionCounter > threshold {
                     selectionView.selectNext()
+                     impact.impactOccurred()
                     motionCounter = 0
                 }else if motionCounter < -threshold {
                     selectionView.selectLast()
+                     impact.impactOccurred()
                     motionCounter = 0
                 }
             }
