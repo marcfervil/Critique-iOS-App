@@ -94,7 +94,9 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </textAttributes>
                                 <items>
-                                    <navigationItem title="Queue" largeTitleDisplayMode="always" id="5Gs-od-ld4"/>
+                                    <navigationItem title="Queue" largeTitleDisplayMode="always" id="5Gs-od-ld4">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="RXK-er-luh"/>
+                                    </navigationItem>
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqv-i4-Tze">
@@ -120,6 +122,7 @@
                     <connections>
                         <outlet property="mainView" destination="9W6-Ct-P2a" id="oHl-nl-rW7"/>
                         <outlet property="navBar" destination="Cal-91-R3y" id="OyA-zo-osC"/>
+                        <outlet property="navBarItem" destination="5Gs-od-ld4" id="mrb-7R-aWJ"/>
                         <outlet property="scrollView" destination="qqv-i4-Tze" id="0T6-2l-xDF"/>
                         <outlet property="selectionViewHolder" destination="WUi-jw-axR" id="kLD-Es-XgO"/>
                     </connections>

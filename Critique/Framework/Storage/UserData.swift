@@ -34,7 +34,7 @@ class UserData {
      }
     
     static func getAttribute(_ attr : String) -> Any!{
-        return userData[attr]!
+        return userData[attr]
     }
     
 

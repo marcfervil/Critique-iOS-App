@@ -21,27 +21,40 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     
     @IBOutlet weak var selectionViewHolder: UIView!
     
+    @IBOutlet weak var navBarItem: UINavigationItem!
     
     var selectionView: SelectionView!
     
-    var queue : QueueHandler = QueueHandler()
+
+    var queue : QueueHandler!
+    
+    var activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y:0, width: 20, height: 20))
     
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var scrollView: UIScrollView!
     let impact = UIImpactFeedbackGenerator()
     
     
+   
+
+    
     var recognizer : UIGestureRecognizer?
     
     override func viewDidLoad() {
+        
+        queue = QueueHandler(controller: self)
+        
         initNavBar()
         initSelectionView()
         initScrollView()
+        
+        
+        renderPost(post: queue.getNextPost())
+        
     }
     
-
-    func renderPost(post: Post!){
-        let postView = PostView(frame: scrollView.bounds, post: post)
+    
+    func displayPost(postView: PostView){
         postView.bounds.origin.y = -scrollView.bounds.height
         scrollView.addSubview(postView)
         UIView.animate(withDuration: 0.2, animations: {
@@ -54,9 +67,30 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
             
         } )
     }
+
+    func renderPost(post: Post!){
+        if post == nil {
+            loading()
+            queue.checkForNewContent()
+        }else{
+            displayPost(postView:  PostView(post: post))
+        }
+    }
     
     func initNavBar(){
-         navBar!.barTintColor = Util.getColor("primary")
+        navBar!.barTintColor = Util.getColor("primary")
+    }
+    
+    func loading(){
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+        navBarItem!.leftBarButtonItem?.customView = activityIndicator
+        self.activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func stopLoading(){
+        activityIndicator.stopAnimating()
+        navBarItem!.leftBarButtonItem?.customView = nil
     }
     
     func initSelectionView(){
@@ -74,6 +108,7 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         recognizer = UIPanGestureRecognizer(target: self, action: #selector(handleDragging))
         recognizer!.cancelsTouchesInView = false
         recognizer!.delegate=self
+        recognizer?.isEnabled = true
         scrollView!.addGestureRecognizer(recognizer!)
   
     }
@@ -90,8 +125,8 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
             self.selectionView.selected = 1
             self.selectionView.updateColors()
             
-            //renderPost(post: queue.getNextPost())
-            renderPost(post: Post(username: "marc", title: "title", content: "content", type: "text", votes: 0))
+            renderPost(post: queue.getNextPost())
+            //renderPost(post: Post(username: "marc", title: "title", content: "content", type: "text", votes: 0))
         }
     }
     
@@ -110,7 +145,7 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     @objc func handleDragging(recognizer: UIPanGestureRecognizer) {
         if (recognizer.state == .ended) {
             collapseSelectionView()
-        }else if (recognizer.state == .changed && HomeScreen.scrolling) {
+        }else if (recognizer.state == .changed ) {
             let point = recognizer.velocity(in: recognizer.view?.superview)
             let translation = recognizer.translation(in: recognizer.view?.superview)
             offset = translation.y

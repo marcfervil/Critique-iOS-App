@@ -22,6 +22,8 @@
 		493F087620CA4AC8003C4EE8 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493F087520CA4AC8003C4EE8 /* PostView.xib */; };
 		493F087820CA523F003C4EE8 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F087720CA523F003C4EE8 /* PostView.swift */; };
 		494BF01520CB048D00ED37F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494BF01420CB026700ED37F8 /* Main.storyboard */; };
+		49C5B58B20D3867400146C89 /* EmptyPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49C5B58A20D3867400146C89 /* EmptyPostView.xib */; };
+		49C5B58D20D3873600146C89 /* EmptyPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5B58C20D3873600146C89 /* EmptyPostView.swift */; };
 		49CB437720C4BAB5004DF321 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CB437620C4BAB5004DF321 /* Queue.swift */; };
 		49CB437920C4CCE1004DF321 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CB437820C4CCE1004DF321 /* Util.swift */; };
 		49EAA5CE20CC353500668443 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAA5CD20CC353500668443 /* Post.swift */; };
@@ -67,6 +69,8 @@
 		493F087520CA4AC8003C4EE8 /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
 		493F087720CA523F003C4EE8 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		494BF01420CB026700ED37F8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "/Users/Marc/Documents/Programming/Critique IOS/Critique/Critique/Main.storyboard"; sourceTree = "<absolute>"; };
+		49C5B58A20D3867400146C89 /* EmptyPostView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyPostView.xib; sourceTree = "<group>"; };
+		49C5B58C20D3873600146C89 /* EmptyPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPostView.swift; sourceTree = "<group>"; };
 		49CB437620C4BAB5004DF321 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		49CB437820C4CCE1004DF321 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		49EAA5CD20CC353500668443 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 			children = (
 				493F086F20C9FA24003C4EE8 /* SelectionView.xib */,
 				493F087520CA4AC8003C4EE8 /* PostView.xib */,
+				49C5B58A20D3867400146C89 /* EmptyPostView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 			children = (
 				493F087120C9FAF8003C4EE8 /* SelectionView.swift */,
 				493F087720CA523F003C4EE8 /* PostView.swift */,
+				49C5B58C20D3873600146C89 /* EmptyPostView.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -337,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C5B58B20D3867400146C89 /* EmptyPostView.xib in Resources */,
 				492EB3AD20C35324000A87CB /* LaunchScreen.storyboard in Resources */,
 				494BF01520CB048D00ED37F8 /* Main.storyboard in Resources */,
 				492EB3AA20C35324000A87CB /* Assets.xcassets in Resources */,
@@ -378,6 +385,7 @@
 				492EB3D320C370E1000A87CB /* BaseApiRequest.swift in Sources */,
 				493F087820CA523F003C4EE8 /* PostView.swift in Sources */,
 				492EB3D120C36866000A87CB /* ApiRequest.swift in Sources */,
+				49C5B58D20D3873600146C89 /* EmptyPostView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

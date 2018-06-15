@@ -26,3 +26,11 @@ class GetQueueRequest : ApiRequest{
         super.init("getQueue")
     }
 }
+
+class CastVotesRequest : ApiRequest{
+    init(votes : Data){
+        super.init("castVotes", [
+            "votes" : votes
+        ])
+    }
+}

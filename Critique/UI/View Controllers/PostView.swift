@@ -11,7 +11,6 @@ import UIKit
 
 class PostView: UIView{
 
-    
 
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var profilePicture: UIImageView!
@@ -34,22 +33,37 @@ class PostView: UIView{
         commonInit()
     }
     
-    init(frame: CGRect, post : Post){
-        super.init(frame: frame)
+    init(post : Post?){
+        super.init(frame: CGRect() )
         self.post = post
         commonInit()
-        setUI()
+        setUp()
     }
 
+    func setUp(){
+        setUI()
+    }
+    
     func setUI(){
         titleLabel.text = post!.title
         contentLabel.text = post!.content
         usernameLabel.text = "posted by "+post!.username
     }
     
+    func getNibName() -> String{
+        return "PostView"
+    }
+    
+    override func didMoveToSuperview(){
+        super.didMoveToSuperview()
+        if superview?.bounds != nil {
+            self.frame = superview!.bounds
+        }
+    }
+    
 
     private func commonInit(){
-        Bundle.main.loadNibNamed("PostView", owner: self, options: nil)
+        Bundle.main.loadNibNamed(getNibName(), owner: self, options: nil)
         addSubview(contentView)
         contentView.frame = self.frame
         self.autoresizingMask = [.flexibleWidth, .flexibleHeight]  
