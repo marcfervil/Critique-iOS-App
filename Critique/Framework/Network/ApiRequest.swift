@@ -26,11 +26,22 @@ class ApiRequest {
         
     }
     
-    func execute(_ callback: @escaping (_ data : Any) -> Void, _ errorCallback: ((_ data : String) -> Void )? = nil ) {
+
+    
+    func execute(_ callback: @escaping (_ data : Any?) -> Void, _ errorCallback: ((_ data : String) -> Void )? = nil ) {
         postRequest(params, path, { (response) in
             if let status = response["status"] as? String{
                 if status == "ok" {
+                    
+                    if response["response"] == nil {
+                        callback(nil)
+                        return
+                    }
+    
                     callback(response["response"]!)
+               
+                    
+                
                 }else{
                     if let errorMessage = response["response"] as? String {
                         DispatchQueue.main.async(execute: {

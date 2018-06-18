@@ -28,9 +28,7 @@ class GetQueueRequest : ApiRequest{
 }
 
 class CastVotesRequest : ApiRequest{
-    init(votes : Data){
-        super.init("castVotes", [
-            "votes" : votes
-        ])
+    init(votes : [String : Any]){
+        super.init("castVotes", votes)
     }
 }

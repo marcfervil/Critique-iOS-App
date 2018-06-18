@@ -49,28 +49,28 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         initScrollView()
         
         
-        renderPost(post: queue.getNextPost())
+     //   renderPost(post: queue.getNextPost())
         
     }
     
     
     func displayPost(postView: PostView){
-        postView.bounds.origin.y = -scrollView.bounds.height
-        scrollView.addSubview(postView)
-        UIView.animate(withDuration: 0.2, animations: {
-            postView.bounds.origin.y = 0
-        } , completion : { _ in
-            if self.currentPost != nil {
-                self.currentPost.removeFromSuperview()
-            }
-            self.currentPost = postView
-            
-        } )
+      
+            postView.bounds.origin.y = -self.scrollView.bounds.height
+            self.scrollView.addSubview(postView)
+            UIView.animate(withDuration: 0.2, animations: {
+                postView.bounds.origin.y = 0
+            } , completion : { _ in
+                if self.currentPost != nil {
+                    self.currentPost.removeFromSuperview()
+                }
+                self.currentPost = postView
+            } )
+        
     }
 
     func renderPost(post: Post!){
         if post == nil {
-            loading()
             queue.checkForNewContent()
         }else{
             displayPost(postView:  PostView(post: post))
@@ -82,15 +82,19 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     }
     
     func loading(){
-        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
-        navBarItem!.leftBarButtonItem?.customView = activityIndicator
-        self.activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
+        DispatchQueue.main.async() {
+            self.activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .white)
+            self.navBarItem!.leftBarButtonItem?.customView = self.activityIndicator
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+        }
     }
     
     func stopLoading(){
-        activityIndicator.stopAnimating()
-        navBarItem!.leftBarButtonItem?.customView = nil
+        DispatchQueue.main.async() {
+            self.activityIndicator.stopAnimating()
+            self.navBarItem!.leftBarButtonItem?.customView = nil
+        }
     }
     
     func initSelectionView(){
@@ -125,8 +129,15 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
             self.selectionView.selected = 1
             self.selectionView.updateColors()
             
+            
+            //CHANGE THIS TO MAKE VOTING VALID LATER
+            //ALSO ADD ID 
+            if queue.currentPost != nil {
+                queue.setVote(postId: queue.currentPost.id, vote: 1)
+            }
+           
             renderPost(post: queue.getNextPost())
-            //renderPost(post: Post(username: "marc", title: "title", content: "content", type: "text", votes: 0))
+            
         }
     }
     

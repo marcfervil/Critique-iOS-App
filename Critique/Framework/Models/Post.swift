@@ -1,4 +1,4 @@
-//
+ //
 //  Post.swift
 //  Critique
 //
@@ -17,20 +17,22 @@ class Post{
     var votes: [String : Any] = [ : ]
     var voteTotal: Int = 0
     var title: String
+    var id: String
     
     
-    init(username: String, title: String, content: String, type: String, votes: Any) {
+    init(username: String, title: String, content: String, type: String, votes: Any, id: String) {
         
         self.username = username
         self.content = content
         self.type = type
         self.title = title
-
+        self.id = id
         if let v = votes as? [String : Any]{
             self.votes = v
         }else if let v = votes as? Int{
             self.voteTotal = v
         }
+        
     }
     
     convenience init(data : [String : Any]){
@@ -39,13 +41,15 @@ class Post{
             title: data["title"] as! String,
             content: data["content"] as! String,
             type:  data["type"] as! String,
-            votes: data["votes"]!
+            votes: data["votes"]!,
+            id: data["_id"] as! String
         )
     }
     
     func getJson() -> Data{
         do {
             let vals : [String : Any] = [
+                "_id": id,
                 "username": username,
                 "title": title,
                 "content": content,

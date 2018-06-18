@@ -12,9 +12,10 @@ import Foundation
 class QueueHandler {
     
     var queue : [Post] = []
+    var currentPost : Post!
     var votes : [[String : Any]] = []
     var controller: Queue!
-    
+    var isVoting = false
 
     init(controller: Queue){
         self.controller = controller
@@ -26,12 +27,12 @@ class QueueHandler {
                             queue.append(Post(data: post))
                         }
                     }
-                    controller.displayPost(postView: PostView (post: queue[0] ))
+                    controller.displayPost(postView: PostView (post: getNextPost()))
                 }else{
-                     loadPosts()
+                     checkForNewContent()
                 }
             }else{
-                loadPosts()
+                checkForNewContent()
             }
         }catch{
             print("Error loading queue!")
@@ -46,25 +47,28 @@ class QueueHandler {
     }
     
     func castVotes(_ completion: (() -> Void)? = nil){
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: votes, options: .prettyPrinted)
-            CastVotesRequest(votes: jsonData).execute( { (response) in
-                if completion != nil {
-                    completion!()
-                }
-            })
-        }catch {
-            
-        }
+        isVoting = true
+        
+        CastVotesRequest(votes: [ "votes" : votes ]).execute( { (response) in
+            self.votes = []
+            self.isVoting = false
+            if completion != nil {
+                completion!()
+            }
+        })
     }
     
     
     func checkForNewContent() {
+        controller.loading()
         loadPosts({ newPosts in
-            if !newPosts {
-                self.controller.displayPost(postView: EmptyPostView())
-            }else{
-                
+            DispatchQueue.main.async() {
+                var post : PostView = EmptyPostView()
+                if newPosts {
+                    post = PostView(post: self.getNextPost())
+                }
+                self.controller.displayPost(postView: post)
+                self.controller.stopLoading()
             }
         })
     }
@@ -80,7 +84,7 @@ class QueueHandler {
                 self.saveQue()
                 
                 if completion != nil{
-                    completion!(posts.count == 0)
+                    completion!(posts.count != 0)
                 }
             }
         }, { (error) in
@@ -94,16 +98,25 @@ class QueueHandler {
             queueData.append(post.getJson())
         }
         UserData.setAttribute(key: "queue", value: queueData)
+        if(currentPost != nil){
+            UserData.setAttribute(key: "currentPost", value: currentPost.getJson())
+        }
         UserData.save()
     }
     
     
     func getNextPost() -> Post!{
-        if queue.count == 2 {
-            castVotes()
+        if queue.count == 2 && !isVoting{
+            castVotes({
+                self.loadPosts({ (newPosts) in
+                    self.controller.stopLoading()
+                })
+            })
         }
         if queue.count > 0 {
-            return queue.popLast()
+            currentPost = queue.remove(at: 0)
+            saveQue()
+            return currentPost
         }else{
             return nil
         }

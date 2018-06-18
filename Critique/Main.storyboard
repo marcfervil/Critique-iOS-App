@@ -67,7 +67,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="CyF-m6-vdW" customClass="HomeScreen" customModule="Critique" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akm-Qc-ets" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="345" y="123"/>
+            <point key="canvasLocation" x="364" y="123"/>
         </scene>
         <!--Queue-->
         <scene sceneID="sgo-Ja-Fue">
