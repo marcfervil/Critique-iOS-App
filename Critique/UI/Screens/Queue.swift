@@ -44,15 +44,34 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         
         queue = QueueHandler(controller: self)
         
+        
+        
         initNavBar()
         initSelectionView()
         initScrollView()
         
-        
-     //   renderPost(post: queue.getNextPost())
+        view.tag = 0
         
     }
     
+    @objc func rightArrowPress(sender: UIKeyCommand) {
+        self.selected(2)
+    }
+    
+    @objc func leftArrowPress(sender: UIKeyCommand) {
+        self.selected(0)
+    }
+    
+    override var keyCommands: [UIKeyCommand]? {
+        return [
+            UIKeyCommand(input: UIKeyInputRightArrow, modifierFlags: [], action: #selector(rightArrowPress) ),
+            UIKeyCommand(input: UIKeyInputRightArrow, modifierFlags: [], action: #selector(leftArrowPress) )
+        ]
+    }
+    
+
+ 
+
     
     func displayPost(postView: PostView){
       
@@ -79,6 +98,7 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     
     func initNavBar(){
         navBar!.barTintColor = Util.getColor("primary")
+        self.navBarItem!.leftBarButtonItem?.customView = UIView(frame: CGRect(x: 0, y:0, width: 0, height: 0))
     }
     
     func loading(){
@@ -131,7 +151,6 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
             
             
             //CHANGE THIS TO MAKE VOTING VALID LATER
-            //ALSO ADD ID 
             if queue.currentPost != nil {
                 queue.setVote(postId: queue.currentPost.id, vote: 1)
             }

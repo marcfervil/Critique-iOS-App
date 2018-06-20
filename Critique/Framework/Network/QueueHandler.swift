@@ -27,7 +27,15 @@ class QueueHandler {
                             queue.append(Post(data: post))
                         }
                     }
-                    controller.displayPost(postView: PostView (post: getNextPost()))
+                    
+                    
+                    
+                    if let currentPost = UserData.getAttribute("currentPost") as? Data {
+                        if let post = try JSONSerialization.jsonObject(with: currentPost, options: []) as? [String : Any] {
+                            controller.displayPost(postView: PostView (post: Post(data: post )))
+                        }
+                    }
+                    
                 }else{
                      checkForNewContent()
                 }
@@ -37,6 +45,7 @@ class QueueHandler {
         }catch{
             print("Error loading queue!")
         }
+        UserData.queue = self
     }
     
     func setVote(postId : String, vote: Int){
@@ -47,6 +56,11 @@ class QueueHandler {
     }
     
     func castVotes(_ completion: (() -> Void)? = nil){
+        
+        if (isVoting) {
+            return
+        }
+        
         isVoting = true
         
         CastVotesRequest(votes: [ "votes" : votes ]).execute( { (response) in

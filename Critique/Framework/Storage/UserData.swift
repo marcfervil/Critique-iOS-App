@@ -12,6 +12,7 @@ import Foundation
 class UserData {
     
     static var userData : [String:Any] = [:]
+    static var queue : QueueHandler?
     static let defaults = UserDefaults.standard
     static let debug = true 
     

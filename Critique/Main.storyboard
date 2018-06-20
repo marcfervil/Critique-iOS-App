@@ -67,7 +67,7 @@
                 <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="CyF-m6-vdW" customClass="HomeScreen" customModule="Critique" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="akm-Qc-ets" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="364" y="123"/>
+            <point key="canvasLocation" x="351" y="143"/>
         </scene>
         <!--Queue-->
         <scene sceneID="sgo-Ja-Fue">
@@ -131,14 +131,26 @@
             </objects>
             <point key="canvasLocation" x="2205.5999999999999" y="142.57871064467767"/>
         </scene>
-        <!--View Controller-->
+        <!--Mutuals-->
         <scene sceneID="P4T-hf-Ine">
             <objects>
-                <viewController storyboardIdentifier="PagesContentController2" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gao-gT-HaW" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MutualsScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gao-gT-HaW" customClass="Mutuals" customModule="Critique" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OtR-ki-qjq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb8-dt-S9M">
+                                <rect key="frame" x="166" y="333" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Kb8-dt-S9M" firstAttribute="centerX" secondItem="iKU-N5-WOq" secondAttribute="centerX" id="8Jf-1Q-utE"/>
+                            <constraint firstItem="Kb8-dt-S9M" firstAttribute="centerY" secondItem="iKU-N5-WOq" secondAttribute="centerY" id="Osk-Oe-94C"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="iKU-N5-WOq"/>
                     </view>
                 </viewController>
