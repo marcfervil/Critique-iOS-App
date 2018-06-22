@@ -25,6 +25,7 @@
 		49C5B58B20D3867400146C89 /* EmptyPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49C5B58A20D3867400146C89 /* EmptyPostView.xib */; };
 		49C5B58D20D3873600146C89 /* EmptyPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5B58C20D3873600146C89 /* EmptyPostView.swift */; };
 		49C5CF7920DAF5BC007D3DB8 /* MutualsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5CF7820DAF5BC007D3DB8 /* MutualsScreen.swift */; };
+		49C5CF7F20DAFE35007D3DB8 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5CF7E20DAFE35007D3DB8 /* UserTableViewCell.swift */; };
 		49CB437720C4BAB5004DF321 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CB437620C4BAB5004DF321 /* Queue.swift */; };
 		49CB437920C4CCE1004DF321 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49CB437820C4CCE1004DF321 /* Util.swift */; };
 		49EAA5CE20CC353500668443 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EAA5CD20CC353500668443 /* Post.swift */; };
@@ -73,6 +74,7 @@
 		49C5B58A20D3867400146C89 /* EmptyPostView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyPostView.xib; sourceTree = "<group>"; };
 		49C5B58C20D3873600146C89 /* EmptyPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPostView.swift; sourceTree = "<group>"; };
 		49C5CF7820DAF5BC007D3DB8 /* MutualsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutualsScreen.swift; sourceTree = "<group>"; };
+		49C5CF7E20DAFE35007D3DB8 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		49CB437620C4BAB5004DF321 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		49CB437820C4CCE1004DF321 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		49EAA5CD20CC353500668443 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				493F087120C9FAF8003C4EE8 /* SelectionView.swift */,
 				493F087720CA523F003C4EE8 /* PostView.swift */,
 				49C5B58C20D3873600146C89 /* EmptyPostView.swift */,
+				49C5CF7E20DAFE35007D3DB8 /* UserTableViewCell.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49C5CF7F20DAFE35007D3DB8 /* UserTableViewCell.swift in Sources */,
 				492EB3A520C35322000A87CB /* ViewController.swift in Sources */,
 				49EAA5CE20CC353500668443 /* Post.swift in Sources */,
 				49CB437720C4BAB5004DF321 /* Queue.swift in Sources */,
