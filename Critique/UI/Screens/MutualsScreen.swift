@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
-class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate{
+class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate{
     
     
-    var mutuals : [[String : Any]] = [[ : ]]
+    var data : [[String : Any]] = [[ : ]]
     
     @IBOutlet weak var MutualsTableView: UITableView!
     
+    @IBOutlet weak var SearchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,30 +27,58 @@ class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate{
      
 
         self.MutualsTableView.rowHeight = 80
+    
         
-        if UserData.getAttribute("mutuals") != nil {
-            mutuals = UserData.getAttribute("mutuals") as! [[String : Any]]
-        }
+        SearchBar.delegate = self
+        
+        doSearch(query: "")
         
     }
     
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
+        doSearch(query: searchBar.text!)
+    }
     
-
+    func doSearch(query : String){
+        if(query.count > 0){
+            SearchRequest(query).execute({ (request) in
+                self.data = request as! [[String : Any]]
+                self.updateResults()
+            }, { (error) in
+                print("error searching")
+            })
+        }else{
+            if UserData.getAttribute("mutuals") != nil {
+                self.data = UserData.getAttribute("mutuals") as! [[String : Any]]
+                updateResults()
+            }else{
+                print("error loading mutuals")
+            }
+        }
+    }
+    
+    func updateResults(){
+        DispatchQueue.main.async(execute: {
+            let range = NSMakeRange(0, self.MutualsTableView.numberOfSections)
+            let sections = NSIndexSet(indexesIn: range)
+            self.MutualsTableView.reloadSections(sections as IndexSet, with: .automatic)
+        })
+    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mutuals.count
+        return data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserTableViewCell
         
-        let user = User(mutuals[indexPath.row])
+        let user = User(data[indexPath.row])
     
         cell.Username.text? = user.getUsername()
         cell.Score.text? = String(user.getScore())
         
         if let url = URL(string: "http://localhost:5000/getPatch/"+user.getUsername()) {
-         //profilePicture.contentMode = .scaleAspectFit
-            
             Util.downloadImage(url: url, completion: { (img) in
                 cell.ProfilePicture?.image = img!
             })

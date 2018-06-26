@@ -27,6 +27,15 @@ class GetQueueRequest : ApiRequest{
     }
 }
 
+class SearchRequest : ApiRequest{
+    init(_ query : String){
+        super.init("search", [
+            "search":query
+        ])
+    }
+}
+
+
 class CastVotesRequest : ApiRequest{
     init(votes : [String : Any]){
         super.init("castVotes", votes)
