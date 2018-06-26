@@ -22,6 +22,7 @@
 		493F087620CA4AC8003C4EE8 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 493F087520CA4AC8003C4EE8 /* PostView.xib */; };
 		493F087820CA523F003C4EE8 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493F087720CA523F003C4EE8 /* PostView.swift */; };
 		494BF01520CB048D00ED37F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 494BF01420CB026700ED37F8 /* Main.storyboard */; };
+		4961789D20E1A7CB00D27F37 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961789C20E1A7CB00D27F37 /* User.swift */; };
 		49C5B58B20D3867400146C89 /* EmptyPostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49C5B58A20D3867400146C89 /* EmptyPostView.xib */; };
 		49C5B58D20D3873600146C89 /* EmptyPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5B58C20D3873600146C89 /* EmptyPostView.swift */; };
 		49C5CF7920DAF5BC007D3DB8 /* MutualsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C5CF7820DAF5BC007D3DB8 /* MutualsScreen.swift */; };
@@ -71,6 +72,7 @@
 		493F087520CA4AC8003C4EE8 /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
 		493F087720CA523F003C4EE8 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		494BF01420CB026700ED37F8 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = "/Users/Marc/Documents/Programming/Critique IOS/Critique/Critique/Main.storyboard"; sourceTree = "<absolute>"; };
+		4961789C20E1A7CB00D27F37 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		49C5B58A20D3867400146C89 /* EmptyPostView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyPostView.xib; sourceTree = "<group>"; };
 		49C5B58C20D3873600146C89 /* EmptyPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyPostView.swift; sourceTree = "<group>"; };
 		49C5CF7820DAF5BC007D3DB8 /* MutualsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutualsScreen.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				49EAA5CD20CC353500668443 /* Post.swift */,
+				4961789C20E1A7CB00D27F37 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				492EB3A520C35322000A87CB /* ViewController.swift in Sources */,
 				49EAA5CE20CC353500668443 /* Post.swift in Sources */,
 				49CB437720C4BAB5004DF321 /* Queue.swift in Sources */,
+				4961789D20E1A7CB00D27F37 /* User.swift in Sources */,
 				493C1B3220C446F700C472C5 /* UserData.swift in Sources */,
 				49EAA5D920CC3CC900668443 /* QueueHandler.swift in Sources */,
 				49CB437920C4CCE1004DF321 /* Util.swift in Sources */,

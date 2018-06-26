@@ -11,10 +11,10 @@ import UIKit
 
 class UserTableViewCell : UITableViewCell {
 
-    
-    @IBOutlet weak var Username: UILabel!
- 
 
+    @IBOutlet weak var ProfilePicture: UIImageView!
+    @IBOutlet weak var Username: UILabel!
+    @IBOutlet weak var Score: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

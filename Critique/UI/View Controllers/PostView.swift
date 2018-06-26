@@ -61,31 +61,14 @@ class PostView: UIView{
         if let url = URL(string: "http://localhost:5000/getPatch/"+post!.username) {
             //profilePicture.contentMode = .scaleAspectFit
             
-            downloadImage(url: url, completion: { (img) in
+            Util.downloadImage(url: url, completion: { (img) in
                 self.profilePicture.image = img!
             })
         }
         
     }
     
-    func getDataFromUrl(url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            completion(data, response, error)
-            }.resume()
-    }
-    
-    func downloadImage(url: URL, completion: @escaping (UIImage?) -> ()) {
-        print("Download Started")
-        getDataFromUrl(url: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            DispatchQueue.main.async() {
-                completion(UIImage(data: data))
-            }
-        }
-    }
-    
+
 
     
     func getNibName() -> String{

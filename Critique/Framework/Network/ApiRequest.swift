@@ -59,6 +59,7 @@ class ApiRequest {
     func postRequest(_ params : [String: Any], _ path: String, _ callback: @escaping (_ data : [String: Any]) -> Void){
         
         let url: String = "http://localhost:5000/"+path
+        //let url: String = "http://10.0.0.223:5000/"+path
         
         guard let urlConnection = URL(string: url) else {
             print("Could not connect to Critique Server")
