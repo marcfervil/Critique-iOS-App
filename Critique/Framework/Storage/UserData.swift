@@ -25,6 +25,16 @@ class UserData {
         }
     }
     
+    public static func getMutuals() -> [User]{
+        var mutualsList : [User] = []
+        if let mutuals = getAttribute("mutuals") as? [[String:Any]]{
+            for userInfo in mutuals {
+                mutualsList.append(User(userInfo))
+            }
+        }
+        return mutualsList
+    }
+    
     static func save(){
         defaults.set(userData, forKey: "userData")
         defaults.synchronize()

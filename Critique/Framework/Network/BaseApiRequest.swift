@@ -35,6 +35,22 @@ class SearchRequest : ApiRequest{
     }
 }
 
+class FollowRequest : ApiRequest{
+    init(_ username: String, _ follwing : Bool){
+        super.init("follow", [
+            "user": username,
+            "following":follwing
+        ])
+    }
+}
+
+class MutualsRequest : ApiRequest{
+    init(){
+        super.init("getMutuals", [ : ])
+    }
+}
+
+
 
 class CastVotesRequest : ApiRequest{
     init(votes : [String : Any]){

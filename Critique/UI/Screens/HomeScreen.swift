@@ -23,9 +23,7 @@ class HomeScreen : UIPageViewController, UIPageViewControllerDataSource,UIPageVi
         self.dataSource = self
         
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PagesContentController1")
-        
-        
-        
+
         
         if let a = vc as? Queue {
             queuePage = a
@@ -40,10 +38,11 @@ class HomeScreen : UIPageViewController, UIPageViewControllerDataSource,UIPageVi
         
         setViewControllers([vc!], direction: .forward, animated: true, completion: { _ in
             HomeScreen.scrolling = false
-            
-           
-            
+
         })
+        
+        
+        
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]){

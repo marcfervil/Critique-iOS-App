@@ -186,20 +186,31 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.558868838028169" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xO-Ua-Ou1">
+                                                    <rect key="frame" x="316" y="24" width="44" height="32"/>
+                                                    <state key="normal" title="Friend"/>
+                                                    <connections>
+                                                        <action selector="mutualButtonClick:" destination="6gd-wK-g2c" eventType="touchUpInside" id="bu1-Uf-az9"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="8xO-Ua-Ou1" secondAttribute="bottom" constant="13" id="6YB-jq-K4j"/>
+                                                <constraint firstItem="8xO-Ua-Ou1" firstAttribute="trailing" secondItem="77N-Kw-nJh" secondAttribute="trailingMargin" id="AlO-4m-HEt"/>
                                                 <constraint firstItem="RfD-ho-FYq" firstAttribute="top" secondItem="ULP-pe-gRa" secondAttribute="bottom" constant="5" id="H3G-Ke-Tn8"/>
                                                 <constraint firstItem="izH-rx-cco" firstAttribute="leading" secondItem="77N-Kw-nJh" secondAttribute="leadingMargin" id="K9M-wW-oAS"/>
                                                 <constraint firstItem="izH-rx-cco" firstAttribute="top" secondItem="77N-Kw-nJh" secondAttribute="topMargin" id="U1E-L5-gVi"/>
                                                 <constraint firstItem="RfD-ho-FYq" firstAttribute="leading" secondItem="izH-rx-cco" secondAttribute="trailing" constant="8" id="Vra-PK-NvK"/>
                                                 <constraint firstItem="ULP-pe-gRa" firstAttribute="leading" secondItem="izH-rx-cco" secondAttribute="trailing" constant="8" id="ctA-JP-Trb"/>
                                                 <constraint firstItem="ULP-pe-gRa" firstAttribute="top" secondItem="77N-Kw-nJh" secondAttribute="top" constant="10" id="eES-7a-LvO"/>
+                                                <constraint firstItem="8xO-Ua-Ou1" firstAttribute="top" secondItem="77N-Kw-nJh" secondAttribute="topMargin" constant="13" id="spP-6l-Rva"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="ProfilePicture" destination="izH-rx-cco" id="JUg-VV-NOa"/>
                                             <outlet property="Score" destination="RfD-ho-FYq" id="h9m-dI-Tvc"/>
                                             <outlet property="Username" destination="ULP-pe-gRa" id="N3Z-6g-kzt"/>
+                                            <outlet property="actionButton" destination="8xO-Ua-Ou1" id="bLt-MG-hl9"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

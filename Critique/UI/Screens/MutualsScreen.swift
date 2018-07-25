@@ -88,7 +88,12 @@ class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate, U
         cell.ProfilePicture?.layer.cornerRadius = 8
         cell.ProfilePicture?.backgroundColor = .purple
         cell.ProfilePicture?.clipsToBounds = true
-        
+   
+        if(user.isMutual){
+            cell.makeMutualButton()
+        }else{
+            cell.makePendingButton()
+        }
         
         self.MutualsTableView.tableFooterView = UIView()
         

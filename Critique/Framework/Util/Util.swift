@@ -11,16 +11,18 @@ import UIKit
 
 class Util {
     
-    static var colors : [String : UIColor]!
+    static var colors : [String : UIColor] = [ : ]
     
     static func getColor(_ color : String) -> UIColor{
-        if (colors) == nil {
-            colors = [
-                "primary" : Util.hexStringToUIColor("#FF4081"),
+        if Util.colors == [ : ] {
+            Util.colors = [
+                "primary" : Util.hexStringToUIColor("#ff4081"),
+                "accent" : Util.hexStringToUIColor("#42a5f5"),
                 "primaryDark" : Util.hexStringToUIColor("#d8346c")
             ]
         }
-        return colors[color]!
+        
+        return Util.colors[color]!
     }
     
     
@@ -31,11 +33,8 @@ class Util {
     }
     
     static func downloadImage(url: URL, completion: @escaping (UIImage?) -> ()) {
-        print("Download Started")
         getDataFromUrl(url: url) { data, response, error in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
             DispatchQueue.main.async() {
                 completion(UIImage(data: data))
             }

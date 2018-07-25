@@ -50,6 +50,8 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         initSelectionView()
         initScrollView()
         
+        //print(UserData.getAttribute("mutuals"))
+        
         view.tag = 0
         
     }
