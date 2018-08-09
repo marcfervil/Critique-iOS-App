@@ -36,6 +36,12 @@ class SelectionView: UIView{
         self.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         updateColors()
+        
+        //potentially make some class desginated for logging you out and then back in and getting mutuals instead
+        MutualsRequest().execute({ (mutals) in
+            UserData.setAttribute(key: "mutuals", value: mutals!)
+            print("updating mutuals...")
+        })
     }
     
 

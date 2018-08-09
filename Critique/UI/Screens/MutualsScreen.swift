@@ -33,6 +33,8 @@ class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate, U
         
         doSearch(query: "")
         
+        
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String){
@@ -48,12 +50,15 @@ class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate, U
                 print("error searching")
             })
         }else{
-            if UserData.getAttribute("mutuals") != nil {
+            
+            MutualsRequest().execute({ (mutals) in
+                UserData.setAttribute(key: "mutuals", value: mutals!)
+                print("updating mutuals...")
                 self.data = UserData.getAttribute("mutuals") as! [[String : Any]]
-                updateResults()
-            }else{
-                print("error loading mutuals")
-            }
+                self.updateResults()
+            })
+            
+    
         }
     }
     
@@ -90,9 +95,16 @@ class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate, U
         cell.ProfilePicture?.clipsToBounds = true
    
         if(user.isMutual){
+          
+            
+            
             cell.makeMutualButton()
-        }else{
+            
+        }else if UserData.isFollowing(user.username){
             cell.makePendingButton()
+            
+        }else{
+            cell.makeFollowButton()
         }
         
         self.MutualsTableView.tableFooterView = UIView()

@@ -25,6 +25,15 @@ class UserData {
         }
     }
     
+    public static func isFollowing(_ username: String) -> Bool {
+        for user in getMutuals(){
+            if user.username == username {
+                return true
+            }
+        }
+        return false
+    }
+    
     public static func getMutuals() -> [User]{
         var mutualsList : [User] = []
         if let mutuals = getAttribute("mutuals") as? [[String:Any]]{

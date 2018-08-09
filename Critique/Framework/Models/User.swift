@@ -13,6 +13,7 @@ class User: NSObject {
     var username : String
     var score : Int
     var isMutual : Bool
+
     
     init(username: String, score: Int, isMutual: Bool) {
         self.username = username
@@ -33,6 +34,7 @@ class User: NSObject {
     }
     
     convenience init(_ prop : [String : Any]){
+        
         self.init(username: (prop["username"] as? String)!, score: (prop["score"] as? Int)!, isMutual: (prop["isMutual"] as? Bool)!)
     }
     
