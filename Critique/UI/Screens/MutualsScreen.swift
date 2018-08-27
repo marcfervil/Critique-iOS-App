@@ -50,14 +50,21 @@ class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate, U
                 print("error searching")
             })
         }else{
+         //   print("fw")
             
-            MutualsRequest().execute({ (mutals) in
-                UserData.setAttribute(key: "mutuals", value: mutals!)
+            /*
+            MutualsRequest().execute({ (mutuals) in
+                
+                print(mutuals)
+                
+                UserData.setAttribute(key: "mutuals", value: mutuals!)
                 print("updating mutuals...")
                 self.data = UserData.getAttribute("mutuals") as! [[String : Any]]
                 self.updateResults()
-            })
+            })*/
             
+            self.data = UserData.getAttribute("mutuals") as! [[String : Any]]
+            self.updateResults()
     
         }
     }
@@ -78,6 +85,8 @@ class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate, U
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserTableViewCell
         
+        print(data)
+        
         let user = User(data[indexPath.row])
     
         cell.Username.text? = user.getUsername()
@@ -95,9 +104,6 @@ class Mutuals : UIViewController , UITableViewDataSource, UITableViewDelegate, U
         cell.ProfilePicture?.clipsToBounds = true
    
         if(user.isMutual){
-          
-            
-            
             cell.makeMutualButton()
             
         }else if UserData.isFollowing(user.username){

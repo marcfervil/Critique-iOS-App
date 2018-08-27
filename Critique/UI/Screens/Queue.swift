@@ -49,9 +49,7 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
         initNavBar()
         initSelectionView()
         initScrollView()
-        
-        //print(UserData.getAttribute("mutuals"))
-        
+ 
         view.tag = 0
         
     }
@@ -101,7 +99,22 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     func initNavBar(){
         navBar!.barTintColor = Util.getColor("primary")
         self.navBarItem!.leftBarButtonItem?.customView = UIView(frame: CGRect(x: 0, y:0, width: 0, height: 0))
+        
+        if(UserData.debug){
+            let lpgr = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress))
+            lpgr.minimumPressDuration = 0.5
+            lpgr.delegate = self
+            navBar!.addGestureRecognizer(lpgr)
+        }
     }
+    
+    
+    @objc func handleLongPress(gestureReconizer: UILongPressGestureRecognizer){
+        if gestureReconizer.state == .began {
+            logout()
+        }
+    }
+    
     
     func loading(){
         DispatchQueue.main.async() {
@@ -160,6 +173,13 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
             renderPost(post: queue.getNextPost())
             
         }
+    }
+    
+    func logout(){
+        UserData.clear()
+        DispatchQueue.main.async(execute: {
+            self.parent!.performSegue(withIdentifier: "toLoginScreen", sender: self)
+        })
     }
     
     func collapseSelectionView(){

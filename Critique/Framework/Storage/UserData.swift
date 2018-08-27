@@ -44,6 +44,13 @@ class UserData {
         return mutualsList
     }
     
+    static func clear(){
+        defaults.removeObject(forKey: "userData")
+        defaults.synchronize()
+        userData = [:]
+        queue = nil
+    }
+    
     static func save(){
         defaults.set(userData, forKey: "userData")
         defaults.synchronize()
