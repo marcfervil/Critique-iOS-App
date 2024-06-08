@@ -178,7 +178,7 @@ class Queue: UIViewController, UIScrollViewDelegate, UIGestureRecognizerDelegate
     func logout(){
         UserData.clear()
         DispatchQueue.main.async(execute: {
-            self.parent!.performSegue(withIdentifier: "toLoginScreen", sender: self)
+            self.parent!.performSegue(withIdentifier: "toLoginScreen", sender: self, )
         })
     }
     
